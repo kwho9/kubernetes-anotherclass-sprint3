@@ -15,7 +15,7 @@ pipeline {
 
         // App용 Github - Api-Tester App 소스코드를 Fork 하신 분
         APP_GITHUB_URL = 'https://github.com/kwho9/kubernetes-anotherclass-api-tester.git'
-        APP_VERSION = '3.0.0'
+        APP_VERSION = 'main'
 
         // 실습 넘버링
         CLASS_NUM = '3211'
