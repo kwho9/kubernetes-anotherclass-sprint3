@@ -78,5 +78,5 @@ pipeline {
                 sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/deployment.yaml"
             }
         }
-    }
+   }
 }
