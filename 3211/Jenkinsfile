@@ -75,17 +75,16 @@ pipeline {
         stage('쿠버네티스 배포') {
             steps {
                 withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
-                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/kubectl/namespace-${params.PROFILE}.yaml --kubeconfig " + '${KUBECONFIG}'
-                }                // K8S 배포
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/namespace.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/configmap.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/secret.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/service.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/serviceaccount.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/secret-token.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/role.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/rolebinding.yaml"
-                sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/deployment.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/namespace.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/configmap.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/secret.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/service.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/serviceaccount.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/secret-token.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/role.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/rolebinding.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/deployment.yaml"
+                }
             }
         }
     }
