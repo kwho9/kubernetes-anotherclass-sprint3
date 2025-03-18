@@ -65,11 +65,11 @@ pipeline {
                         sh "docker push ${DOCKERHUB_USERNAME}/api-tester:${APP_VERSION}"
                     }
                 }
-                post{
-                    always{
-                        sh "docker logout"
-                    }
-                }
+            }
+            post{
+               always{
+                  sh "docker logout"
+               }
             }
         }
 
