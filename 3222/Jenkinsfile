@@ -31,9 +31,9 @@ pipeline {
                     sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/core/ingress.yaml"
                     sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/core/service.yaml"
                     sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/core/deployment.yaml"
-                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/potal/ingress.yaml"
-                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/potal/service.yaml"
-                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/potal/deployment.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/portal/ingress.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/portal/service.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/portal/deployment.yaml"
                 }
            }
         }
