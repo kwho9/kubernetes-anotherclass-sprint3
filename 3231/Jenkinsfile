@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    environment {
+        // 본인의 username으로 하실 분은 수정해주세요.
+        DOCKERHUB_USERNAME = 'gwanghog142'
+        GITHUB_URL = 'https://github.com/kwho9/kubernetes-anotherclass-sprint3.git'
+
+        // 실습 넘버링
+        CLASS_NUM = '3231'
+        // 버전
+        APP_VERSION = '3.0.0'
+    }
+    
+    stages {
+        stage('릴리즈파일 체크아웃') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']],
+                    extensions: [[$class: 'SparseCheckoutPaths',
+                    sparseCheckoutPaths: [[path: "/${CLASS_NUM}"]]]],
+					userRemoteConfigs: [[url: "${GITHUB_URL}"]])
+            }
+        }
+
+        stage('쿠버네티스 배포') {
+            steps {
+                 withCredentials([file(credentialsId: 'k8s_master_config', variable: 'KUBECONFIG')]) {
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/namespace.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/secret.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/configmap.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/file/deployment.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/file/pv.yaml"
+                    sh "kubectl apply -f ./${CLASS_NUM}/deploy/k8s/file/pvc.yaml"
+                }
+           }
+        }
+    }
+}

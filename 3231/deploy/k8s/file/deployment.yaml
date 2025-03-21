@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: application-3231
-          image: 1pro/api-tester:3.0.0
+          image: gwanghog142/api-tester:3.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
